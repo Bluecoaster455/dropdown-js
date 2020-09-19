@@ -1,0 +1,16 @@
+.dd-wrapper{
+  pointer-events: none;
+  opacity: 0;
+  position: fixed;
+
+  &.dd-shown{
+    pointer-events: initial;
+    opacity: 1;
+  }
+
+  &:not(.dd-shown){
+    height: 0;
+  }
+}
+
+@import './theme.scss';

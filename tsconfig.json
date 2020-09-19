@@ -1,0 +1,29 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "strict": true,
+        "strictNullChecks": false,
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "inlineSources": true,
+        "declaration": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "moduleResolution": "node",
+        "downlevelIteration": true,
+        "importHelpers": true,
+        "module": "esnext",
+        "target": "es5",
+        "rootDir": "src",
+        "pretty": true,
+        "lib": ["es6", "es2015", "dom"],
+        "declarationDir": "dist",
+        "outDir": "dist"
+    },
+    "include": [
+        "src/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
