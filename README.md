@@ -19,7 +19,7 @@ Add the css and the script files to your project:
 ```
 
 ## Add a dropdown
-Simply have a <div> inside your <body> with the `dropdown` attribute and an `id`.
+Simply have a ``<div>`` inside your ``<body>`` with the `dropdown` attribute and an `id`.
 Everything inside the <div> is the content of your dropdown. You can override the styles
 if needed.
 
