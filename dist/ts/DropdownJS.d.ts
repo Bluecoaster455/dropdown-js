@@ -39,3 +39,4 @@ export declare class DropdownJS {
      */
     hide(dropdownId?: string): Dropdown;
 }
+//# sourceMappingURL=DropdownJS.d.ts.map

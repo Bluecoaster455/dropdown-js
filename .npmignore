@@ -29,3 +29,5 @@ config
 .travis.yml
 CHANGELOG.md
 README.md
+tsconfig.json
+postcss.config.js
