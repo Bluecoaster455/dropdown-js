@@ -42,22 +42,35 @@ export class Dropdown {
 
     let rectButton = this.$reference.getClientRects()[0];
     let rectDropdown = this.$dropdown.getClientRects()[0];
-    let windowWidth = window.innerWidth;
-    let windowHeight = window.innerHeight;
 
-    let left = rectButton.left, top = rectButton.top;
-    top += rectButton.height + 5;
+    let containerBox = {
+      left: 5,
+      top: 5,
+      width: window.innerWidth - 10,
+      height: window.innerHeight - 10
+    }
 
+    if(this.$container !== undefined){
+      let containerRect = this.$container.getClientRects()[0];
+      containerBox.left = containerRect.left;
+      containerBox.top = containerRect.top;
+      containerBox.width = containerRect.width;
+      containerBox.height = containerRect.height;
+    }
+
+    let left = rectButton.left, top = rectButton.top + rectButton.height;
+    if(settings.align === 'right') left -= rectDropdown.width - rectButton.width;
+    
     switch (settings.align) {
       case "left":
-        if (left + rectDropdown.width + 20 > windowWidth) {
-          left = windowWidth - rectDropdown.width - 20;
+        let maxleft = containerBox.left + containerBox.width - rectDropdown.width;
+        if (left > maxleft) {
+          left = maxleft;
         }
         break;
       case "right":
-        left -= rectDropdown.width - rectButton.width;
-        if (left < 5) {
-          left = 5;
+        if (left < containerBox.left) {
+          left = containerBox.left;
         }
         break;
     }

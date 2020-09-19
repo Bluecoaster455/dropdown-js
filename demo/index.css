@@ -1,0 +1,53 @@
+.dd-wrapper {
+  pointer-events: none;
+  opacity: 0;
+  position: fixed;
+}
+.dd-wrapper.dd-shown {
+  pointer-events: initial;
+  opacity: 1;
+}
+.dd-wrapper:not(.dd-shown) {
+  height: 0;
+}
+
+.dd-wrapper {
+  background-color: #f0f2f7;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px #5a636d;
+}
+.dd-wrapper ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dd-wrapper ul li {
+  text-align: left;
+  min-width: 150px;
+  text-decoration: none;
+  color: #395380;
+}
+.dd-wrapper ul li a {
+  display: inline-block;
+  padding: 5px 10px 5px 5px;
+  width: 100%;
+  text-decoration: none;
+  color: #395380;
+}
+.dd-wrapper ul li a:hover {
+  background-color: #ddd;
+}
+.dd-wrapper ul li a i {
+  width: 25px;
+  text-align: center;
+  margin-right: 5px;
+}
+.dd-wrapper ul li.dd-hoverable {
+  cursor: pointer;
+}
+.dd-wrapper ul li.dd-hoverable:hover {
+  background-color: #fdfefe;
+}
+
+/*# sourceMappingURL=index.css.map*/

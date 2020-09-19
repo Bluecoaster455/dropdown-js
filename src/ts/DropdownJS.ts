@@ -10,7 +10,7 @@ export class DropdownJS {
   /**
    * List of instances of dropdowns indexed by Ids.
    */
-  public dropdownInstances: Array < Dropdown > = [];
+  public dropdownInstances: Array <Dropdown> = [];
 
   /**
    * Library main instance.
@@ -18,12 +18,21 @@ export class DropdownJS {
   constructor() {
     document.body.addEventListener("click", (e) => {
       let element = e.target as HTMLElement;
-      let dropdownId = element.getAttribute("dropdown-id");
-      let dropdownAlign = element.getAttribute("dropdown-align");
 
-      if (dropdownAlign === null) dropdownAlign = "left";
+      // Click a dropdown button.
+      let dropdownId = element.getAttribute("dropdown-id");
+      
+      let dropdown = this.findByElement(element);
+
+      this.dropdownInstances.forEach(d => {
+        if(dropdown === null && dropdownId === null || dropdownId !== null && d.id !== dropdownId){
+          d.hide();
+        }
+      })
 
       if (dropdownId !== null) {
+        let dropdownAlign = element.getAttribute("dropdown-align");
+        if (dropdownAlign === null) dropdownAlign = "left";
         if (this.isOpen(dropdownId)) {
           this.hide(dropdownId);
         } else {
@@ -34,13 +43,36 @@ export class DropdownJS {
         }
       }
 
+      // Click an a[href] tag within a dropdown.
+      if(dropdown !== null && element.getAttribute("href") !== null && element.tagName === "A"){
+        dropdown.hide();
+      }
+
     })
 
     document.querySelectorAll("[dropdown]").forEach((dropdown) => {
       dropdown.classList.add("dd-wrapper");
-      this.dropdownInstances.push(new Dropdown(dropdown as HTMLElement));
+      let instance = new Dropdown(dropdown as HTMLElement);
+
+      let containerSelector = dropdown.getAttribute("dropdown-container");
+      if(containerSelector != null){
+        instance.$container = document.querySelector(containerSelector);
+      }
+      this.dropdownInstances.push(instance);
     });
 
+  }
+
+  /**
+   * Find a dropdown by an HTML element that is part of it. If 
+   * the dropdown doesn't exist, then null is returned.
+   * @param element HTML element which is part of a dropdown.
+   */
+  findByElement(element : HTMLElement) : Dropdown {
+    if(element.getAttribute("dropdown") == null){
+      return element.parentElement == null ? null : this.findByElement(element.parentElement);
+    }
+    return this.find(element.id);
   }
 
   /**

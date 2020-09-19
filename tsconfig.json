@@ -21,7 +21,7 @@
         "outDir": "dist"
     },
     "include": [
-        "src/*"
+        "src/*", "src/ts/DropdownOptions.ts"
     ],
     "exclude": [
         "node_modules"

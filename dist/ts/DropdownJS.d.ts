@@ -13,6 +13,12 @@ export declare class DropdownJS {
      */
     constructor();
     /**
+     * Find a dropdown by an HTML element that is part of it. If
+     * the dropdown doesn't exist, then null is returned.
+     * @param element HTML element which is part of a dropdown.
+     */
+    findByElement(element: HTMLElement): Dropdown;
+    /**
      * Find a dropdown by its Id.
      */
     find(dropdownId: string): Dropdown;
