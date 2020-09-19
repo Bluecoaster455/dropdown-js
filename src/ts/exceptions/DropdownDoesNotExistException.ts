@@ -1,7 +1,6 @@
-import { DropdownJSException } from "./DropdownJSException";
-
-export class DropdownDoesNotExistException extends DropdownJSException {
+export class DropdownDoesNotExistException {
+    public message : string; 
     constructor(dropdownId : string){
-        super(`[DropdownJS] Dropdown Id '${dropdownId}' does not exist!`);
+        this.message = `[DropdownJS] Dropdown Id '${dropdownId}' does not exist!`;
     }
 }

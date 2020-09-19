@@ -10,7 +10,7 @@ export class DropdownJS {
   /**
    * List of instances of dropdowns indexed by Ids.
    */
-  public dropdownInstances: Array <Dropdown> = [];
+  public dropdownInstances: Array<Dropdown> = [];
 
   /**
    * Library main instance.

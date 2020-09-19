@@ -1,4 +1,4 @@
-import { DropdownJSException } from "./DropdownJSException";
-export declare class DropdownDoesNotExistException extends DropdownJSException {
+export declare class DropdownDoesNotExistException {
+    message: string;
     constructor(dropdownId: string);
 }
