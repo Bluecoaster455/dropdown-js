@@ -30,6 +30,7 @@
     "ui"
   ],
   "license": "MIT",
+  "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
