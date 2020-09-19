@@ -1,5 +1,5 @@
 {
-  "name": "@bluecoaster/dropdown-js",
+  "name": "dropdownjs",
   "version": "0.1.0",
   "description": "A vanilla javascript dropdown library/plugin.",
   "main": "index.js",
@@ -23,7 +23,11 @@
     "vanilla",
     "plugin",
     "library",
-    "dropdown"
+    "dropdown",
+    "front-end",
+    "menu",
+    "context",
+    "ui"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -31,6 +35,7 @@
     "@babel/preset-env": "^7.3.1",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^6.0.2",
     "copy-webpack-plugin": "^6.1.1",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^4.3.0",

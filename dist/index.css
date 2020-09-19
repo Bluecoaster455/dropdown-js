@@ -1,6 +1,6 @@
 /*!
  * 
- * @bluecoaster/dropdown-js v0.1.0
+ * dropdownjs v0.1.0
  * https://github.com/Bluecoaster455/dropdown-js
  * 
  * Copyright (c) Bluecoaster455
