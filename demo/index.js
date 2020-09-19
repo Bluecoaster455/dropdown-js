@@ -387,56 +387,10 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ "./src/index.ts":
-/*!**********************!*\
-  !*** ./src/index.ts ***!
-  \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ts_DropdownJS__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ts/DropdownJS */ "./src/ts/DropdownJS.ts");
-
-var instance = new _ts_DropdownJS__WEBPACK_IMPORTED_MODULE_0__["DropdownJS"]();
-/* harmony default export */ __webpack_exports__["default"] = (instance);
-
-
-/***/ }),
-
-/***/ "./src/scss/app.scss":
-/*!***************************!*\
-  !*** ./src/scss/app.scss ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../node_modules/mini-css-extract-plugin/dist/loader.js!../../node_modules/css-loader/dist/cjs.js!../../node_modules/postcss-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./app.scss */ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/app.scss");
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
-/***/ "./src/ts/Dropdown.ts":
-/*!****************************!*\
-  !*** ./src/ts/Dropdown.ts ***!
-  \****************************/
+/***/ "./src/Dropdown.ts":
+/*!*************************!*\
+  !*** ./src/Dropdown.ts ***!
+  \*************************/
 /*! exports provided: Dropdown */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -520,19 +474,40 @@ var Dropdown = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/ts/DropdownJS.ts":
-/*!******************************!*\
-  !*** ./src/ts/DropdownJS.ts ***!
-  \******************************/
+/***/ "./src/exceptions/DropdownDoesNotExistException.ts":
+/*!*********************************************************!*\
+  !*** ./src/exceptions/DropdownDoesNotExistException.ts ***!
+  \*********************************************************/
+/*! exports provided: DropdownDoesNotExistException */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DropdownDoesNotExistException", function() { return DropdownDoesNotExistException; });
+var DropdownDoesNotExistException = /** @class */ (function () {
+    function DropdownDoesNotExistException(dropdownId) {
+        this.message = "[DropdownJS] Dropdown Id '" + dropdownId + "' does not exist!";
+    }
+    return DropdownDoesNotExistException;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
 /*! exports provided: DropdownJS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DropdownJS", function() { return DropdownJS; });
-/* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dropdown */ "./src/ts/Dropdown.ts");
-/* harmony import */ var _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./exceptions/DropdownDoesNotExistException */ "./src/ts/exceptions/DropdownDoesNotExistException.ts");
-/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../scss/app.scss */ "./src/scss/app.scss");
+/* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dropdown */ "./src/Dropdown.ts");
+/* harmony import */ var _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./exceptions/DropdownDoesNotExistException */ "./src/exceptions/DropdownDoesNotExistException.ts");
+/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scss_app_scss__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -541,15 +516,13 @@ __webpack_require__.r(__webpack_exports__);
  * Public API for DropdownJS.
  */
 var DropdownJS = /** @class */ (function () {
-    /**
-     * Library main instance.
-     */
     function DropdownJS() {
+    }
+    /**
+     * Initialize DropdownJS
+     */
+    DropdownJS.init = function () {
         var _this = this;
-        /**
-         * List of instances of dropdowns indexed by Ids.
-         */
-        this.dropdownInstances = [];
         document.body.addEventListener("click", function (e) {
             var element = e.target;
             // Click a dropdown button.
@@ -588,13 +561,13 @@ var DropdownJS = /** @class */ (function () {
             }
             _this.dropdownInstances.push(instance);
         });
-    }
+    };
     /**
      * Find a dropdown by an HTML element that is part of it. If
      * the dropdown doesn't exist, then null is returned.
      * @param element HTML element which is part of a dropdown.
      */
-    DropdownJS.prototype.findByElement = function (element) {
+    DropdownJS.findByElement = function (element) {
         if (element.getAttribute("dropdown") == null) {
             return element.parentElement == null ? null : this.findByElement(element.parentElement);
         }
@@ -603,14 +576,14 @@ var DropdownJS = /** @class */ (function () {
     /**
      * Find a dropdown by its Id.
      */
-    DropdownJS.prototype.find = function (dropdownId) {
+    DropdownJS.find = function (dropdownId) {
         return this.dropdownInstances.find(function (d) { return d.id === dropdownId; });
     };
     /**
      * Get if the dropdown is currently open.
      * @param dropdownId Id of the dropdown.
      */
-    DropdownJS.prototype.isOpen = function (dropdownId) {
+    DropdownJS.isOpen = function (dropdownId) {
         var dropdown = this.find(dropdownId);
         if (dropdown === undefined) {
             throw new _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__["DropdownDoesNotExistException"](dropdownId);
@@ -620,7 +593,7 @@ var DropdownJS = /** @class */ (function () {
     /**
      * Show the dropdown.
      */
-    DropdownJS.prototype.show = function (dropdownId, options) {
+    DropdownJS.show = function (dropdownId, options) {
         var dropdown = this.find(dropdownId);
         if (dropdown === undefined) {
             throw new _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__["DropdownDoesNotExistException"](dropdownId);
@@ -636,7 +609,7 @@ var DropdownJS = /** @class */ (function () {
     /**
      * Hide the dropdown.
      */
-    DropdownJS.prototype.hide = function (dropdownId) {
+    DropdownJS.hide = function (dropdownId) {
         if (dropdownId !== undefined) {
             var dropdown = this.find(dropdownId);
             if (dropdown === undefined) {
@@ -652,34 +625,47 @@ var DropdownJS = /** @class */ (function () {
             });
         }
     };
+    /**
+     * List of instances of dropdowns indexed by Ids.
+     */
+    DropdownJS.dropdownInstances = [];
     return DropdownJS;
 }());
 
+DropdownJS.init();
 
 
 /***/ }),
 
-/***/ "./src/ts/exceptions/DropdownDoesNotExistException.ts":
-/*!************************************************************!*\
-  !*** ./src/ts/exceptions/DropdownDoesNotExistException.ts ***!
-  \************************************************************/
-/*! exports provided: DropdownDoesNotExistException */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./src/scss/app.scss":
+/*!***************************!*\
+  !*** ./src/scss/app.scss ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DropdownDoesNotExistException", function() { return DropdownDoesNotExistException; });
-var DropdownDoesNotExistException = /** @class */ (function () {
-    function DropdownDoesNotExistException(dropdownId) {
-        this.message = "[DropdownJS] Dropdown Id '" + dropdownId + "' does not exist!";
-    }
-    return DropdownDoesNotExistException;
-}());
+var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../node_modules/mini-css-extract-plugin/dist/loader.js!../../node_modules/css-loader/dist/cjs.js!../../node_modules/postcss-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./app.scss */ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/app.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
 
 
+
+module.exports = content.locals || {};
 
 /***/ })
 
-/******/ })["default"];
+/******/ })["DropdownJS"];
 });
 //# sourceMappingURL=index.js.map

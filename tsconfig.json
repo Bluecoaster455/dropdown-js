@@ -23,7 +23,7 @@
         "outDir": "dist"
     },
     "include": [
-        "src/*", "src/ts/DropdownOptions.ts"
+        "src/*", "src/exceptions"
     ],
     "exclude": [
         "node_modules"
