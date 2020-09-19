@@ -17,8 +17,11 @@
         "rootDir": "src",
         "pretty": true,
         "lib": ["es6", "es2015", "dom"],
-        "declarationDir": "dist",
-        "outDir": "dist"
+        "declarationDir": "types",
+        "outDir": "dist",
+        "typeRoots": [
+            "./dist"
+        ]   
     },
     "include": [
         "src/*", "src/ts/DropdownOptions.ts"
