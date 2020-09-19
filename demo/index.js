@@ -637,13 +637,20 @@ var DropdownJS = /** @class */ (function () {
      * Hide the dropdown.
      */
     DropdownJS.prototype.hide = function (dropdownId) {
-        var dropdown = this.find(dropdownId);
-        if (dropdown === undefined) {
-            throw new _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__["DropdownDoesNotExistException"](dropdownId);
+        if (dropdownId !== undefined) {
+            var dropdown = this.find(dropdownId);
+            if (dropdown === undefined) {
+                throw new _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__["DropdownDoesNotExistException"](dropdownId);
+            }
+            dropdown.$dropdown.classList.remove("dd-shown");
+            dropdown.hide();
+            return dropdown;
         }
-        dropdown.$dropdown.classList.remove("dd-shown");
-        dropdown.hide();
-        return dropdown;
+        else {
+            this.dropdownInstances.forEach(function (d) {
+                d.hide();
+            });
+        }
     };
     return DropdownJS;
 }());

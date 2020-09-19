@@ -52,5 +52,14 @@ the same dropdown. The `dropdown-align` will align the dropdown to the button `l
 <button dropdown-id="dropdown" dropdown-align="left">Click me to open the dropdown</button>
 ```
 
+# DropdownJS API functions
+```js
+DropdownJS.show("dropdownid"); // display the dropdown by id.
+DropdownJS.hide("dropdownid"); // hide a dropdown by id. You can specify nothing as id to hide all dropdowns.
+DropdownJS.isOpen("dropdownid"); // checks if the dropdown is open.
+DropdownJS.find("dropdownid"); // Find a dropdown by id and return a Dropdown instance.
+DropdownJS.findByElement(document.querySelector("#dropdown")); // Find a dropdown by element.
+```
+
 ## Licence
 DropdownJS is under [MIT licence](https://opensource.org/licenses/mit-license.php)

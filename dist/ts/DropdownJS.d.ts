@@ -37,5 +37,5 @@ export declare class DropdownJS {
     /**
      * Hide the dropdown.
      */
-    hide(dropdownId: string): Dropdown;
+    hide(dropdownId?: string): Dropdown;
 }

@@ -120,16 +120,25 @@ export class DropdownJS {
   /**
    * Hide the dropdown.
    */
-  hide(dropdownId: string): Dropdown {
-    let dropdown = this.find(dropdownId);
+  hide(dropdownId? : string): Dropdown {
 
-    if (dropdown === undefined) {
-      throw new DropdownDoesNotExistException(dropdownId);
+    if(dropdownId !== undefined){
+      let dropdown = this.find(dropdownId);
+  
+      if (dropdown === undefined) {
+        throw new DropdownDoesNotExistException(dropdownId);
+      }
+  
+      dropdown.$dropdown.classList.remove("dd-shown");
+      dropdown.hide();
+      return dropdown;
+    }
+    else{
+      this.dropdownInstances.forEach(d => {
+        d.hide();
+      })
     }
 
-    dropdown.$dropdown.classList.remove("dd-shown");
-    dropdown.hide();
-    return dropdown;
   }
 
 }
