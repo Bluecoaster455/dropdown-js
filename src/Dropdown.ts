@@ -30,6 +30,8 @@ export class Dropdown {
    */
   constructor(element : HTMLElement) {
     this.$dropdown = element;
+    this.$reference = document.body;
+    this.$container = document.body;
     this.id = element.id;
   }
 

@@ -1,31 +1,28 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "strict": true,
-        "strictNullChecks": false,
-        "esModuleInterop": true,
-        "sourceMap": true,
-        "inlineSources": true,
+        "target": "es5",
+        "module": "esnext",
+        "lib": ["es2016", "es2015", "dom"],
         "declaration": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+
+        "strict": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
-        "moduleResolution": "node",
-        "downlevelIteration": true,
-        "importHelpers": true,
-        "module": "esnext",
-        "target": "es5",
-        "rootDir": "src",
-        "pretty": true,
-        "lib": ["es6", "es2015", "dom"],
-        "declarationMap": true,
-        "composite": true,
-        "declarationDir": "dist",
-        "outDir": "dist"
+        "esModuleInterop": true,
+        "inlineSources": true,
+        "noUnusedLocals": true,
+        "noImplicitReturns": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "allowSyntheticDefaultImports": false,
+        "noFallthroughCasesInSwitch": true
     },
-    "include": [
-        "src/*", "src/exceptions"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules"]
 }

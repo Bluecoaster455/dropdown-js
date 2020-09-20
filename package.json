@@ -2,7 +2,8 @@
   "name": "@bluecoaster455/dropdownjs",
   "version": "0.1.5",
   "description": "A vanilla javascript dropdown library/plugin.",
-  "main": "index.js",
+  "main": "dist/DropdownJS.js",
+  "types": "dist/DropdownJS.d.ts",
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server --config config/webpack.config.dev.js --open",
@@ -30,7 +31,6 @@
     "ui"
   ],
   "license": "MIT",
-  "types": "dist",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",

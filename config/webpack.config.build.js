@@ -7,18 +7,18 @@ const config = require('./webpack.config.base');
 module.exports = {
   mode: 'production',
   entry: {
-    app: './src/index.ts'
+    app: './src/DropdownJS.ts'
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "index.css"
+      filename: "DropdownJS.css"
     }),
     new CleanWebpackPlugin(),
     new webpack.BannerPlugin(config.banner)
   ],
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: "index.js",
+    filename: "DropdownJS.js",
     chunkFilename: '[name].js',
     libraryTarget: "umd",
     libraryExport: config.libraryExport,

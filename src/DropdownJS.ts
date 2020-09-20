@@ -56,7 +56,10 @@ export class DropdownJS {
 
       let containerSelector = dropdown.getAttribute("dropdown-container");
       if(containerSelector != null){
-        instance.$container = document.querySelector(containerSelector);
+        let element = document.querySelector(containerSelector);
+        if(element instanceof HTMLElement){
+          instance.$container = element;
+        }
       }
       this.dropdownInstances.push(instance);
     });
@@ -67,7 +70,7 @@ export class DropdownJS {
    * the dropdown doesn't exist, then null is returned.
    * @param element HTML element which is part of a dropdown.
    */
-  static findByElement(element : HTMLElement) : Dropdown {
+  static findByElement(element : HTMLElement) : Dropdown|null {
     if(element.getAttribute("dropdown") == null){
       return element.parentElement == null ? null : this.findByElement(element.parentElement);
     }
@@ -77,8 +80,9 @@ export class DropdownJS {
   /**
    * Find a dropdown by its Id.
    */
-  static find(dropdownId: string): Dropdown {
-    return this.dropdownInstances.find(d => d.id === dropdownId);
+  static find(dropdownId: string): Dropdown | null {
+    let dropdown = this.dropdownInstances.find(d => d.id === dropdownId);
+    return dropdown === undefined ? null : dropdown;
   }
 
   /**
@@ -87,7 +91,7 @@ export class DropdownJS {
    */
   static isOpen(dropdownId: string): boolean {
     let dropdown = this.find(dropdownId);
-    if (dropdown === undefined) {
+    if (dropdown === null) {
       throw new DropdownDoesNotExistException(dropdownId);
     }
     return dropdown.isOpen();
@@ -99,7 +103,7 @@ export class DropdownJS {
   static show(dropdownId: string, options ? : { align: string, target: HTMLElement }): Dropdown {
     let dropdown = this.find(dropdownId);
 
-    if (dropdown === undefined) {
+    if (dropdown === null) {
       throw new DropdownDoesNotExistException(dropdownId);
     }
 
@@ -116,12 +120,12 @@ export class DropdownJS {
   /**
    * Hide the dropdown.
    */
-  static hide(dropdownId? : string): Dropdown {
+  static hide(dropdownId? : string) : Dropdown | null {
 
     if(dropdownId !== undefined){
       let dropdown = this.find(dropdownId);
   
-      if (dropdown === undefined) {
+      if (dropdown === null) {
         throw new DropdownDoesNotExistException(dropdownId);
       }
   
@@ -134,6 +138,8 @@ export class DropdownJS {
         d.hide();
       })
     }
+
+    return null;
 
   }
 

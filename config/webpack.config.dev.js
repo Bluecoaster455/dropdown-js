@@ -8,11 +8,11 @@ const config = require('./webpack.config.base');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/index.ts'
+    app: './src/DropdownJS.ts'
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "index.css"
+      filename: "DropdownJS.css"
     }),
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -28,7 +28,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../demo'),
     publicPath: '/',
-    filename: "index.js",
+    filename: "DropdownJS.js",
     chunkFilename: '[name].js',
     libraryTarget: "umd",
     libraryExport: config.libraryExport,
