@@ -9,11 +9,11 @@ Add the css and the script files to your project:
 <html>
   <head>
     ...
-    <link href="/path/to/index.css" type="text/css" rel="stylesheet"/>
+    <link href="/path/to/DropdownJS.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
     ...
-    <script src="/path/to/index.js" type="text/javascript"></script>
+    <script src="/path/to/DropdownJS.js" type="text/javascript"></script>
   </body>
 </html>
 ```
