@@ -5,17 +5,17 @@ import './scss/app.scss';
 /**
  * Public API for DropdownJS.
  */
-export class DropdownJS {
+class DropdownJS {
 
   /**
    * List of instances of dropdowns indexed by Ids.
    */
-  static dropdownInstances: Array<Dropdown> = [];
+  dropdownInstances: Array<Dropdown> = [];
 
   /**
    * Initialize DropdownJS
    */
-  static init(){
+  init(){
     document.body.addEventListener("click", (e) => {
       let element = e.target as HTMLElement;
 
@@ -70,7 +70,7 @@ export class DropdownJS {
    * the dropdown doesn't exist, then null is returned.
    * @param element HTML element which is part of a dropdown.
    */
-  static findByElement(element : HTMLElement) : Dropdown|null {
+  findByElement(element : HTMLElement) : Dropdown|null {
     if(element.getAttribute("dropdown") == null){
       return element.parentElement == null ? null : this.findByElement(element.parentElement);
     }
@@ -80,7 +80,7 @@ export class DropdownJS {
   /**
    * Find a dropdown by its Id.
    */
-  static find(dropdownId: string): Dropdown | null {
+  find(dropdownId: string): Dropdown | null {
     let dropdown = this.dropdownInstances.find(d => d.id === dropdownId);
     return dropdown === undefined ? null : dropdown;
   }
@@ -89,7 +89,7 @@ export class DropdownJS {
    * Get if the dropdown is currently open.
    * @param dropdownId Id of the dropdown.
    */
-  static isOpen(dropdownId: string): boolean {
+  isOpen(dropdownId: string): boolean {
     let dropdown = this.find(dropdownId);
     if (dropdown === null) {
       throw new DropdownDoesNotExistException(dropdownId);
@@ -100,7 +100,7 @@ export class DropdownJS {
   /**
    * Show the dropdown.
    */
-  static show(dropdownId: string, options ? : { align: string, target: HTMLElement }): Dropdown {
+  show(dropdownId: string, options ? : { align: string, target: HTMLElement }): Dropdown {
     let dropdown = this.find(dropdownId);
 
     if (dropdown === null) {
@@ -120,7 +120,7 @@ export class DropdownJS {
   /**
    * Hide the dropdown.
    */
-  static hide(dropdownId? : string) : Dropdown | null {
+  hide(dropdownId? : string) : Dropdown | null {
 
     if(dropdownId !== undefined){
       let dropdown = this.find(dropdownId);
@@ -145,4 +145,4 @@ export class DropdownJS {
 
 }
 
-DropdownJS.init();
+export default new DropdownJS();

@@ -487,7 +487,6 @@ exports.Dropdown = Dropdown;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DropdownJS = void 0;
 var Dropdown_1 = __webpack_require__(/*! ./Dropdown */ "./src/Dropdown.ts");
 var DropdownDoesNotExistException_1 = __webpack_require__(/*! ./exceptions/DropdownDoesNotExistException */ "./src/exceptions/DropdownDoesNotExistException.ts");
 __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
@@ -496,11 +495,15 @@ __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
  */
 var DropdownJS = /** @class */ (function () {
     function DropdownJS() {
+        /**
+         * List of instances of dropdowns indexed by Ids.
+         */
+        this.dropdownInstances = [];
     }
     /**
      * Initialize DropdownJS
      */
-    DropdownJS.init = function () {
+    DropdownJS.prototype.init = function () {
         var _this = this;
         document.body.addEventListener("click", function (e) {
             var element = e.target;
@@ -549,7 +552,7 @@ var DropdownJS = /** @class */ (function () {
      * the dropdown doesn't exist, then null is returned.
      * @param element HTML element which is part of a dropdown.
      */
-    DropdownJS.findByElement = function (element) {
+    DropdownJS.prototype.findByElement = function (element) {
         if (element.getAttribute("dropdown") == null) {
             return element.parentElement == null ? null : this.findByElement(element.parentElement);
         }
@@ -558,7 +561,7 @@ var DropdownJS = /** @class */ (function () {
     /**
      * Find a dropdown by its Id.
      */
-    DropdownJS.find = function (dropdownId) {
+    DropdownJS.prototype.find = function (dropdownId) {
         var dropdown = this.dropdownInstances.find(function (d) { return d.id === dropdownId; });
         return dropdown === undefined ? null : dropdown;
     };
@@ -566,7 +569,7 @@ var DropdownJS = /** @class */ (function () {
      * Get if the dropdown is currently open.
      * @param dropdownId Id of the dropdown.
      */
-    DropdownJS.isOpen = function (dropdownId) {
+    DropdownJS.prototype.isOpen = function (dropdownId) {
         var dropdown = this.find(dropdownId);
         if (dropdown === null) {
             throw new DropdownDoesNotExistException_1.DropdownDoesNotExistException(dropdownId);
@@ -576,7 +579,7 @@ var DropdownJS = /** @class */ (function () {
     /**
      * Show the dropdown.
      */
-    DropdownJS.show = function (dropdownId, options) {
+    DropdownJS.prototype.show = function (dropdownId, options) {
         var dropdown = this.find(dropdownId);
         if (dropdown === null) {
             throw new DropdownDoesNotExistException_1.DropdownDoesNotExistException(dropdownId);
@@ -592,7 +595,7 @@ var DropdownJS = /** @class */ (function () {
     /**
      * Hide the dropdown.
      */
-    DropdownJS.hide = function (dropdownId) {
+    DropdownJS.prototype.hide = function (dropdownId) {
         if (dropdownId !== undefined) {
             var dropdown = this.find(dropdownId);
             if (dropdown === null) {
@@ -609,14 +612,9 @@ var DropdownJS = /** @class */ (function () {
         }
         return null;
     };
-    /**
-     * List of instances of dropdowns indexed by Ids.
-     */
-    DropdownJS.dropdownInstances = [];
     return DropdownJS;
 }());
-exports.DropdownJS = DropdownJS;
-DropdownJS.init();
+exports.default = new DropdownJS();
 
 
 /***/ }),
@@ -672,6 +670,6 @@ module.exports = content.locals || {};
 
 /***/ })
 
-/******/ })["DropdownJS"];
+/******/ })["default"];
 });
 //# sourceMappingURL=DropdownJS.js.map

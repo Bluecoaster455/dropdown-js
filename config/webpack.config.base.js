@@ -15,7 +15,7 @@ LICENSE file in the root directory of this source tree.
 
 module.exports = {
     libraryName: "DropdownJS",
-    libraryExport: "DropdownJS",
+    libraryExport: "default",
     devServerHost: 'localhost',
     devServerPort: 8080,
     banner: banner
