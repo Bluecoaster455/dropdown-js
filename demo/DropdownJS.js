@@ -391,12 +391,13 @@ module.exports = function (list, options) {
 /*!*************************!*\
   !*** ./src/Dropdown.ts ***!
   \*************************/
-/*! exports provided: Dropdown */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dropdown", function() { return Dropdown; });
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Dropdown = void 0;
 /**
  * Defines `Dropdown` class
  */
@@ -471,7 +472,7 @@ var Dropdown = /** @class */ (function () {
     };
     return Dropdown;
 }());
-
+exports.Dropdown = Dropdown;
 
 
 /***/ }),
@@ -480,19 +481,16 @@ var Dropdown = /** @class */ (function () {
 /*!***************************!*\
   !*** ./src/DropdownJS.ts ***!
   \***************************/
-/*! exports provided: DropdownJS */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DropdownJS", function() { return DropdownJS; });
-/* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dropdown */ "./src/Dropdown.ts");
-/* harmony import */ var _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./exceptions/DropdownDoesNotExistException */ "./src/exceptions/DropdownDoesNotExistException.ts");
-/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
-/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scss_app_scss__WEBPACK_IMPORTED_MODULE_2__);
 
-
-
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DropdownJS = void 0;
+var Dropdown_1 = __webpack_require__(/*! ./Dropdown */ "./src/Dropdown.ts");
+var DropdownDoesNotExistException_1 = __webpack_require__(/*! ./exceptions/DropdownDoesNotExistException */ "./src/exceptions/DropdownDoesNotExistException.ts");
+__webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
 /**
  * Public API for DropdownJS.
  */
@@ -535,7 +533,7 @@ var DropdownJS = /** @class */ (function () {
         });
         document.querySelectorAll("[dropdown]").forEach(function (dropdown) {
             dropdown.classList.add("dd-wrapper");
-            var instance = new _Dropdown__WEBPACK_IMPORTED_MODULE_0__["Dropdown"](dropdown);
+            var instance = new Dropdown_1.Dropdown(dropdown);
             var containerSelector = dropdown.getAttribute("dropdown-container");
             if (containerSelector != null) {
                 var element = document.querySelector(containerSelector);
@@ -571,7 +569,7 @@ var DropdownJS = /** @class */ (function () {
     DropdownJS.isOpen = function (dropdownId) {
         var dropdown = this.find(dropdownId);
         if (dropdown === null) {
-            throw new _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__["DropdownDoesNotExistException"](dropdownId);
+            throw new DropdownDoesNotExistException_1.DropdownDoesNotExistException(dropdownId);
         }
         return dropdown.isOpen();
     };
@@ -581,7 +579,7 @@ var DropdownJS = /** @class */ (function () {
     DropdownJS.show = function (dropdownId, options) {
         var dropdown = this.find(dropdownId);
         if (dropdown === null) {
-            throw new _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__["DropdownDoesNotExistException"](dropdownId);
+            throw new DropdownDoesNotExistException_1.DropdownDoesNotExistException(dropdownId);
         }
         var settings = Object.assign({}, {
             align: "left",
@@ -598,7 +596,7 @@ var DropdownJS = /** @class */ (function () {
         if (dropdownId !== undefined) {
             var dropdown = this.find(dropdownId);
             if (dropdown === null) {
-                throw new _exceptions_DropdownDoesNotExistException__WEBPACK_IMPORTED_MODULE_1__["DropdownDoesNotExistException"](dropdownId);
+                throw new DropdownDoesNotExistException_1.DropdownDoesNotExistException(dropdownId);
             }
             dropdown.$dropdown.classList.remove("dd-shown");
             dropdown.hide();
@@ -617,7 +615,7 @@ var DropdownJS = /** @class */ (function () {
     DropdownJS.dropdownInstances = [];
     return DropdownJS;
 }());
-
+exports.DropdownJS = DropdownJS;
 DropdownJS.init();
 
 
@@ -627,19 +625,20 @@ DropdownJS.init();
 /*!*********************************************************!*\
   !*** ./src/exceptions/DropdownDoesNotExistException.ts ***!
   \*********************************************************/
-/*! exports provided: DropdownDoesNotExistException */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DropdownDoesNotExistException", function() { return DropdownDoesNotExistException; });
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DropdownDoesNotExistException = void 0;
 var DropdownDoesNotExistException = /** @class */ (function () {
     function DropdownDoesNotExistException(dropdownId) {
         this.message = "[DropdownJS] Dropdown Id '" + dropdownId + "' does not exist!";
     }
     return DropdownDoesNotExistException;
 }());
-
+exports.DropdownDoesNotExistException = DropdownDoesNotExistException;
 
 
 /***/ }),
