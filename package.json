@@ -1,6 +1,6 @@
 {
   "name": "@bluecoaster455/dropdownjs",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A vanilla javascript dropdown library/plugin.",
   "main": "dist/DropdownJS.js",
   "types": "dist/DropdownJS.d.ts",
