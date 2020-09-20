@@ -397,13 +397,24 @@ module.exports = function (list, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dropdown", function() { return Dropdown; });
-var Dropdown = (function () {
+/**
+ * Defines `Dropdown` class
+ */
+var Dropdown = /** @class */ (function () {
+    /**
+     * Instanciate the Dropdown.
+     * @param element Element used as a dropdown.
+     */
     function Dropdown(element) {
         this.$dropdown = element;
         this.$reference = document.body;
         this.$container = document.body;
         this.id = element.id;
     }
+    /**
+     * Move the dropdown to an element.
+     * @param element Reference element.
+     */
     Dropdown.prototype.moveTo = function (element, settings) {
         this.$reference = element;
         var rectButton = this.$reference.getClientRects()[0];
@@ -440,12 +451,21 @@ var Dropdown = (function () {
         this.$dropdown.style.top = top + "px";
         this.$dropdown.style.left = left + "px";
     };
+    /**
+     * Get if the dropdown is currently open.
+     */
     Dropdown.prototype.isOpen = function () {
         return this.$dropdown.classList.contains("dd-shown");
     };
+    /**
+     * Show the dropdown at its current location.
+     */
     Dropdown.prototype.show = function () {
         this.$dropdown.classList.add("dd-shown");
     };
+    /**
+     * Hide the dropdown.
+     */
     Dropdown.prototype.hide = function () {
         this.$dropdown.classList.remove("dd-shown");
     };
@@ -473,13 +493,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var DropdownJS = (function () {
+/**
+ * Public API for DropdownJS.
+ */
+var DropdownJS = /** @class */ (function () {
     function DropdownJS() {
     }
+    /**
+     * Initialize DropdownJS
+     */
     DropdownJS.init = function () {
         var _this = this;
         document.body.addEventListener("click", function (e) {
             var element = e.target;
+            // Click a dropdown button.
             var dropdownId = element.getAttribute("dropdown-id");
             var dropdown = _this.findByElement(element);
             _this.dropdownInstances.forEach(function (d) {
@@ -501,6 +528,7 @@ var DropdownJS = (function () {
                     });
                 }
             }
+            // Click an a[href] tag within a dropdown.
             if (dropdown !== null && element.getAttribute("href") !== null && element.tagName === "A") {
                 dropdown.hide();
             }
@@ -518,16 +546,28 @@ var DropdownJS = (function () {
             _this.dropdownInstances.push(instance);
         });
     };
+    /**
+     * Find a dropdown by an HTML element that is part of it. If
+     * the dropdown doesn't exist, then null is returned.
+     * @param element HTML element which is part of a dropdown.
+     */
     DropdownJS.findByElement = function (element) {
         if (element.getAttribute("dropdown") == null) {
             return element.parentElement == null ? null : this.findByElement(element.parentElement);
         }
         return this.find(element.id);
     };
+    /**
+     * Find a dropdown by its Id.
+     */
     DropdownJS.find = function (dropdownId) {
         var dropdown = this.dropdownInstances.find(function (d) { return d.id === dropdownId; });
         return dropdown === undefined ? null : dropdown;
     };
+    /**
+     * Get if the dropdown is currently open.
+     * @param dropdownId Id of the dropdown.
+     */
     DropdownJS.isOpen = function (dropdownId) {
         var dropdown = this.find(dropdownId);
         if (dropdown === null) {
@@ -535,6 +575,9 @@ var DropdownJS = (function () {
         }
         return dropdown.isOpen();
     };
+    /**
+     * Show the dropdown.
+     */
     DropdownJS.show = function (dropdownId, options) {
         var dropdown = this.find(dropdownId);
         if (dropdown === null) {
@@ -548,6 +591,9 @@ var DropdownJS = (function () {
         dropdown.show();
         return dropdown;
     };
+    /**
+     * Hide the dropdown.
+     */
     DropdownJS.hide = function (dropdownId) {
         if (dropdownId !== undefined) {
             var dropdown = this.find(dropdownId);
@@ -565,6 +611,9 @@ var DropdownJS = (function () {
         }
         return null;
     };
+    /**
+     * List of instances of dropdowns indexed by Ids.
+     */
     DropdownJS.dropdownInstances = [];
     return DropdownJS;
 }());
@@ -584,7 +633,7 @@ DropdownJS.init();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DropdownDoesNotExistException", function() { return DropdownDoesNotExistException; });
-var DropdownDoesNotExistException = (function () {
+var DropdownDoesNotExistException = /** @class */ (function () {
     function DropdownDoesNotExistException(dropdownId) {
         this.message = "[DropdownJS] Dropdown Id '" + dropdownId + "' does not exist!";
     }
